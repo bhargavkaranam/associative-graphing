@@ -1,0 +1,37 @@
+create OR REPLACE trigger myTrig before insert ON ag_dbs.membership
+for each ROW
+BEGIN
+	insert into suggestions(A,B,Weight) select new.personid,personid,10 from person where locality = new.locality;    
+   insert into suggestions(A,B,Weight) select new.personid,personid,10 from person where workplace = new.workplace;
+end
+
+create OR REPLACE trigger myTrig1 before insert ON ag_dbs.membership
+for each ROW
+BEGIN
+	insert into suggestions(A,B,Weight) select new.personid,personid,5 from groups where groupid = new.groupid;    
+end;
+
+create OR REPLACE trigger myTrig2 before insert ON ag_dbs.likes
+for each ROW
+BEGIN
+	insert into suggestions(A,B,Weight) select new.personid,personid,20 from likes where interestid = new.interestid;    
+end;
+
+create OR REPLACE trigger myTrig3 before insert ON ag_dbs.visited
+for each ROW
+BEGIN
+	insert into suggestions(A,B,Weight) select new.personid,personid,5 from visited where placeid = new.placeid;        
+end;
+
+create or replace trigger myTrig4 before insert on ag_dbs.friends 
+for each row
+begin 
+	insert into suggestions(A,B,Weight) select new.A,B,20 from friends where A = new.B;        
+end;
+
+create or replace trigger myTrig5 after insert on ag_dbs.tagged
+for each row
+begin
+	insert into suggestions(A,B,Weight) select new.personID, personID, 30 from tagged where photoid = new.photoid and personid <> new.personid;
+	insert into suggestions(B,A,Weight) select new.personID, personID, 30 from tagged where photoid = new.photoid and personid <> new.personid;
+end;

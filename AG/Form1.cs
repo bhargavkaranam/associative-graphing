@@ -18,7 +18,7 @@ namespace AG
         public Form1()
         {
             InitializeComponent();
-            
+ 
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -51,21 +51,21 @@ namespace AG
                         MailMessage mail = new MailMessage();
                         SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
-                        mail.From = new MailAddress("associategraphing@gmail.com");
+                        mail.From = new MailAddress("bhargav.karanam@gmail.com");
                         mail.To.Add(email);
                         mail.Subject = "Registration";
                         mail.Body = "Thank you for registering with us.";
                         SmtpServer.Port = 587;
-                        SmtpServer.Credentials = new System.Net.NetworkCredential("associategraphing@gmail.com", "luca.123");
+                        SmtpServer.Credentials = new System.Net.NetworkCredential("bhargav.karanam@gmail.com", "Panasonic!@#@selvoNIC123");
                         SmtpServer.EnableSsl = true;
 
                         SmtpServer.Send(mail);
-                        MessageBox.Show("mail Send");
+                        MessageBox.Show("Check your email");
 
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                        MessageBox.Show("Couldn't send the email. Try again.");
 
                     }
                     Main m = new Main(username);

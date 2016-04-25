@@ -43,6 +43,10 @@
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.joinGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewMyGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -66,10 +70,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.joinGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewMyGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
@@ -130,14 +130,14 @@
             // editDetailsToolStripMenuItem
             // 
             this.editDetailsToolStripMenuItem.Name = "editDetailsToolStripMenuItem";
-            this.editDetailsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editDetailsToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.editDetailsToolStripMenuItem.Text = "View Details";
             this.editDetailsToolStripMenuItem.Click += new System.EventHandler(this.editDetailsToolStripMenuItem_Click);
             // 
             // addInterestsToolStripMenuItem
             // 
             this.addInterestsToolStripMenuItem.Name = "addInterestsToolStripMenuItem";
-            this.addInterestsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addInterestsToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.addInterestsToolStripMenuItem.Text = "Add Interests";
             this.addInterestsToolStripMenuItem.Click += new System.EventHandler(this.addInterestsToolStripMenuItem_Click);
             // 
@@ -208,6 +208,36 @@
             this.checkInToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.checkInToolStripMenuItem.Text = "Check in";
             this.checkInToolStripMenuItem.Click += new System.EventHandler(this.checkInToolStripMenuItem_Click);
+            // 
+            // groupToolStripMenuItem
+            // 
+            this.groupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.joinGroupToolStripMenuItem,
+            this.viewMyGroupsToolStripMenuItem,
+            this.createGroupToolStripMenuItem});
+            this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
+            this.groupToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.groupToolStripMenuItem.Text = "Group";
+            // 
+            // joinGroupToolStripMenuItem
+            // 
+            this.joinGroupToolStripMenuItem.Name = "joinGroupToolStripMenuItem";
+            this.joinGroupToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.joinGroupToolStripMenuItem.Text = "Join Group";
+            this.joinGroupToolStripMenuItem.Click += new System.EventHandler(this.joinGroupToolStripMenuItem_Click);
+            // 
+            // viewMyGroupsToolStripMenuItem
+            // 
+            this.viewMyGroupsToolStripMenuItem.Name = "viewMyGroupsToolStripMenuItem";
+            this.viewMyGroupsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.viewMyGroupsToolStripMenuItem.Text = "View my Groups";
+            // 
+            // createGroupToolStripMenuItem
+            // 
+            this.createGroupToolStripMenuItem.Name = "createGroupToolStripMenuItem";
+            this.createGroupToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.createGroupToolStripMenuItem.Text = "Create Group";
+            this.createGroupToolStripMenuItem.Click += new System.EventHandler(this.createGroupToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -323,6 +353,7 @@
             this.button3.TabIndex = 10;
             this.button3.Text = "Not Interested";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -444,36 +475,6 @@
             this.pictureBox4.TabIndex = 5;
             this.pictureBox4.TabStop = false;
             // 
-            // groupToolStripMenuItem
-            // 
-            this.groupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.joinGroupToolStripMenuItem,
-            this.viewMyGroupsToolStripMenuItem,
-            this.createGroupToolStripMenuItem});
-            this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.groupToolStripMenuItem.Text = "Group";
-            // 
-            // joinGroupToolStripMenuItem
-            // 
-            this.joinGroupToolStripMenuItem.Name = "joinGroupToolStripMenuItem";
-            this.joinGroupToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.joinGroupToolStripMenuItem.Text = "Join Group";
-            this.joinGroupToolStripMenuItem.Click += new System.EventHandler(this.joinGroupToolStripMenuItem_Click);
-            // 
-            // viewMyGroupsToolStripMenuItem
-            // 
-            this.viewMyGroupsToolStripMenuItem.Name = "viewMyGroupsToolStripMenuItem";
-            this.viewMyGroupsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.viewMyGroupsToolStripMenuItem.Text = "View my Groups";
-            // 
-            // createGroupToolStripMenuItem
-            // 
-            this.createGroupToolStripMenuItem.Name = "createGroupToolStripMenuItem";
-            this.createGroupToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.createGroupToolStripMenuItem.Text = "Create Group";
-            this.createGroupToolStripMenuItem.Click += new System.EventHandler(this.createGroupToolStripMenuItem_Click);
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(399, 33);
@@ -593,7 +594,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "Main";
-            this.Load += new System.EventHandler(this.Main_Load_1);
+            this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

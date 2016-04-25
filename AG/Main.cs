@@ -30,7 +30,7 @@ namespace AG
             if (db.OpenConnection() == true)
             {
                 //Create Command
-                String query = "select distinct B as b,sum(weight)/6 as closeness from suggestions where A = '" + username + "' group by b order by closeness desc limit 4";
+                String query = "select distinct B as b,round(sum(weight)/6,3) as closeness from suggestions where A = '" + username + "' group by b order by closeness desc limit 4";
                 MySqlCommand cmd = new MySqlCommand(query, db.connection);
                 //Create a data reader and Execute the command
                 MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -347,36 +347,6 @@ namespace AG
             }
         }
 
-        private void Main_Load_1(object sender, EventArgs e)
-        {
-            DBConnect db = new DBConnect();
-            string query = "delete from suggestions where A = '" + username + "' and B = '" + fsuggest[1] + "'";
-
-            //open connection
-            if (db.OpenConnection() == true)
-            {
-                //create command and assign the query and connection from the constructor
-                MySqlCommand cmd = new MySqlCommand(query, db.connection);
-
-                //Execute command
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show(fsuggest[1] + " will no more be shown as a suggestion");
-                    db.CloseConnection();
-
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-                //close connection
-
-            }
-            else
-            {
-            }
-        }
         
         private void button5_Click(object sender, EventArgs e)
         {
@@ -425,6 +395,37 @@ namespace AG
                 {
                     cmd.ExecuteNonQuery();
                     MessageBox.Show(fsuggest[3] + " will no more be shown as your friend");
+                    db.CloseConnection();
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                //close connection
+
+            }
+            else
+            {
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DBConnect db = new DBConnect();
+            string query = "delete from suggestions where A = '" + username + "' and B = '" + fsuggest[1] + "'";
+
+            //open connection
+            if (db.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, db.connection);
+
+                //Execute command
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show(fsuggest[1] + " will no more be shown as a suggestion");
                     db.CloseConnection();
 
                 }

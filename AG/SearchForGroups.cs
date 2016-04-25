@@ -12,8 +12,8 @@ namespace AG
 {
     public partial class SearchForGroups : Form
     {
-        String username;
-        String search;
+        public String username;
+        public String search;
         List<String> gnames = new List<String>();
         List<String> gids = new List<String>();
         public SearchForGroups()
@@ -38,6 +38,7 @@ namespace AG
         private void button1_Click(object sender, EventArgs e)
         {
             DBConnect db = new DBConnect();
+            search = textBox1.Text;
             string query = "select * from groups where name like '%" + search + "%' LIMIT 3";
 
             //Create a list to store the result

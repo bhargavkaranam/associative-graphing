@@ -8,15 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using MySql.Data.MySqlClient;
 namespace AG
 {
     public partial class AddPhoto : Form
     {
         public String username;
+        public String fname;
+        int r;
         public AddPhoto(String u)
         {
             username = u;
             InitializeComponent();
+            textBox1.Hide();
+            button2.Hide();
         }
         private void settingsToolStripMenuItem1_Click_1(object sender, EventArgs e)
         {
@@ -92,9 +97,37 @@ namespace AG
             {
                 try
                 {
-                    String fname = dialog.SafeFileName;
+                    fname = dialog.SafeFileName;
                     String name = dialog.FileName;
-                    File.Copy(name, Path.Combine("C:/", fname));
+                    MessageBox.Show(fname + " has been uploaded!");
+                    DBConnect db = new DBConnect();
+                    Random rand = new Random();
+                     r = rand.Next(10000);
+                    string query = "insert into photo(photoid,url) values('"+r+"','"+fname+"')";
+
+            //open connection
+                    if (db.OpenConnection() == true)
+                    {
+               
+                     MySqlCommand cmd = new MySqlCommand(query, db.connection);               
+                     try
+                      {
+                       cmd.ExecuteNonQuery();
+                       db.CloseConnection();                    
+                      }catch(MySqlException ex)
+                        {
+                        MessageBox.Show(ex.ToString());                    
+                        }   
+                //close connection
+                
+                    }
+                   else
+                    {
+             
+                    }
+                    button1.Hide();
+                    textBox1.Show();
+                    button2.Show();
                 }
                 catch (Exception ex) {
                     MessageBox.Show(ex.ToString());
@@ -106,6 +139,39 @@ namespace AG
 
         private void AddPhoto_Load(object sender, EventArgs e)
         {
+            Main m = new Main(username);
+            this.Hide();
+            m.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            String tags = textBox1.Text;
+            String[] tag = tags.Split(',');
+            int size = tag.Length;
+            DBConnect db = new DBConnect();                                    
+            for(int i=0;i<size;i++)
+            {
+                string query = "insert into tagged(personid,photoid) values('" + tag[i] +"','"+r+"')";
+
+                //open connection
+                if (db.OpenConnection() == true)
+                {
+
+                    MySqlCommand cmd = new MySqlCommand(query, db.connection);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        db.CloseConnection();
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                    //close connection
+
+                }
+            }
             Main m = new Main(username);
             this.Hide();
             m.Show();
