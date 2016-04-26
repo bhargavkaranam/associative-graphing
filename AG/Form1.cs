@@ -56,7 +56,7 @@ namespace AG
                         mail.Subject = "Registration";
                         mail.Body = "Thank you for registering with us.";
                         SmtpServer.Port = 587;
-                        SmtpServer.Credentials = new System.Net.NetworkCredential("bhargav.karanam@gmail.com", "Panasonic!@#@selvoNIC123");
+                        SmtpServer.Credentials = new System.Net.NetworkCredential("yourmail", "yourpassword");
                         SmtpServer.EnableSsl = true;
 
                         SmtpServer.Send(mail);
